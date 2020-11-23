@@ -5,7 +5,7 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
-const { database } = require('./keys.js');
+const { database } = require('../database/keys.js');
 
 //initializations
 const app = express();
@@ -25,7 +25,7 @@ app.set('view engine', '.hbs');
 
 //Middlewares
 app.use(session({
-    secret: 'virtuallabsession',
+    secret: 'crmsession',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
@@ -51,11 +51,8 @@ app.use((req, res, next) => {
 
 //Routes
 app.use(require('./routes'));
-app.use(require('./routes/authentication'));
-app.use('/admin', require('./routes/admin'));
-app.use('/teacher', require('./routes/teacher'));
-app.use('/student', require('./routes/student'));
-app.use('/auth', require('./routes/authentication'));
+app.use(require('./routes/authorization'));
+app.use('/auth', require('./routes/authorization'));
 
 //Public
 app.use(express.static(path.join(__dirname, 'public')));
