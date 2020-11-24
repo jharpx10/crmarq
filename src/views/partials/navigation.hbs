@@ -1,6 +1,7 @@
 <!-- Grey with black text -->
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav">
+        {{#if user}}
         <li class="nav-item active">
             <a class="nav-link" href="#">Active</a>
         </li>
@@ -10,9 +11,13 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
         </li>
+        <li>
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
         </li>
+        {{/if}}
     </ul>
 </nav>
 

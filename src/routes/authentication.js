@@ -17,6 +17,11 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-    res.send('This is your profile');
+    res.render('purchase/purchase');
+});
+
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logOut();//Es un metodo de passport
+    res.redirect('/signin');
 });
 module.exports = router;
