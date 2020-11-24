@@ -6,5 +6,4 @@ module.exports = {
         password: 'root',
         database: 'crm'
     }
-
 }
