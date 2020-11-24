@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../../database/database');
 const router = express.Router();
+const chart = require('chart.js');
 
 router.get('/purchase', async (req, res) => {
     const purchases = await pool.query('SELECT p.id, c.name, p.date, p.totalValue FROM CLIENT c JOIN PURCHASE p ON c.id = p.client');
