@@ -36,11 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-
-
-
-
-
 //Global variables
 
 app.use((req, res, next) => {

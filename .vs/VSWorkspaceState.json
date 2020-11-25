@@ -5,10 +5,8 @@
     "\\src",
     "\\src\\routes",
     "\\src\\views",
-    "\\src\\views\\authorization",
-    "\\src\\views\\layouts",
-    "\\src\\views\\partials"
+    "\\src\\views\\authorization"
   ],
-  "SelectedNode": "\\database\\db.sql",
+  "SelectedNode": "\\src\\routes\\index.js",
   "PreviewInSolutionExplorer": false
 }
