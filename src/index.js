@@ -7,8 +7,10 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const { database } = require('../database/keys.js');
 
+const passport = require('passport');
 //initializations
 const app = express();
+require('./lib/passport');
 
 //settings
 app.set('port', process.env.PORT || 4000);
@@ -22,6 +24,8 @@ app.engine('.hbs', exphbs({
 }))
 app.set('view engine', '.hbs');
 
+app.use(passport.initialize());//Así inicia
+app.use(passport.session());
 
 //Middlewares
 app.use(session({
@@ -34,20 +38,23 @@ app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use(passport.initialize());//Así inicia
+app.use(passport.session());
 
 //Global variables
 
 app.use((req, res, next) => {
     app.locals.success = req.flash('success');
     app.locals.danger = req.flash('danger');
+    app.locals.message = req.flash('message');
+    app.locals.user = req.user;
     next();
 });
 
 //Routes
 app.use(require('./routes'));
-app.use(require('./routes/authorization'));
-app.use('/auth', require('./routes/authorization'));
+app.use(require('./routes/authentication'));
+app.use('/admin', require('./routes/purchase'));
 
 //Public
 app.use(express.static(path.join(__dirname, 'public')));

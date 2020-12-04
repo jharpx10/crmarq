@@ -1,12 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\database",
     "\\src",
-    "\\src\\routes",
+    "\\src\\public",
+    "\\src\\public (2)",
+    "\\src\\public (2)\\images",
+    "\\src\\public\\css",
+    "\\src\\public\\images",
+    "\\src\\public\\img",
     "\\src\\views",
-    "\\src\\views\\authorization"
+    "\\src\\views\\purchase"
   ],
-  "SelectedNode": "\\src\\routes\\index.js",
+  "SelectedNode": "\\database\\db.sql",
   "PreviewInSolutionExplorer": false
 }
