@@ -17,11 +17,7 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-<<<<<<< HEAD
     res.redirect('/admin/purchase');
-=======
-    res.render('purchase/purchase');
->>>>>>> 322793dbcdb89141739ab9ed0de3dd79fe3c0b76
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
