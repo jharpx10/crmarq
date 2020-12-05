@@ -1,0 +1,187 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="text-center">
+                <div class="presentation">
+                    <h2>ADMIN{{admin.name}}</h2>
+                    </br>
+                    <h5>CLIENTES</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <table class="display table-hover table-responsive" id="table_id">
+                <thead>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+
+                    {{#each clients}}
+
+
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{email}}</td>
+
+                    </tr>
+
+                    {{/each}}
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container p-4">
+    <div class="form-group">
+        <label for="type">Clasificar Clientes</label>
+        <select id="classifier" name="type" onchange="classify()">
+            <option value="">Selecci&oacute;n tipo</option>
+            <option value="Validity">Clasificar por vigencia de compra</option>
+            <option value="Frecuency">Clasificar por frecuencia de compra</option>
+            <option value="Volumen">Clasificar por volumen de compra</option>
+        </select>
+    </div>
+</div>
+<div class="container p-5">
+    <div class="row">
+        <div class="mx-auto">
+            <h3>Clientes Clasificados</h3>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto">
+            <table class="display table-hover table-responsive" id="table_id2">
+                <thead>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Tipo de Cliente</th>
+                        <th>Correo</th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+
+                    {{#each clients}}
+
+
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{Type}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                        </td>
+                    </tr>
+
+                    {{/each}}
+
+                </tbody>
+                <tfoot>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Tipo de Cliente</th>
+                        <th>Correo</th>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<table id="table_id2">
+</table>
+<script>
+    function classify() {
+        const id = $('classifier').val();
+        document.getElementById('table_id2').hidden = false;
+        $('#table_id2').html('');
+        $('#table_id2').append(`
+                <thead>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Tipo de Cliente</th>
+                        <th>Correo</th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+                <tbody>`);
+        $.ajax({
+            url: '/admin/client/validity',
+            success: function (dev) {
+
+
+
+                dev.forEach(d => {
+                    $('#table_id2').append(`
+                {{#each clients}}
+
+
+                    <tr>
+                        <td>${d.id}</td>
+                        <td>${d.name}</td>
+                        <td>${d.type}</td>
+                        <td>${d.email}</td>
+
+                        <td>
+                    </tr>
+
+                    {{/each}}`);
+                });
+            },
+            error: function (XMLHttpRequest) {
+                alert(XMLHttpRequest);
+            }
+        });
+        $('#table_id2').append(`
+                </tbody>
+                <tfoot>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Tipo de Cliente</th>
+                        <th>Correo</th>
+
+                    </tr>
+                </tfoot>`);
+    }
+    document.getElementById('table_id2').hidden = true;
+
+    
+    
+</script>
