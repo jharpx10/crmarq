@@ -61,9 +61,9 @@
         <label for="type">Clasificar Clientes</label>
         <select id="classifier" name="type" onchange="classify()">
             <option value="">Selecci&oacute;n tipo</option>
-            <option value="Validity">Clasificar por vigencia de compra</option>
-            <option value="Frecuency">Clasificar por frecuencia de compra</option>
-            <option value="Volumen">Clasificar por volumen de compra</option>
+            <option value="validity">Clasificar por vigencia de compra</option>
+            <option value="frecuency">Clasificar por frecuencia de compra</option>
+            <option value="volumen">Clasificar por volumen de compra</option>
         </select>
     </div>
 </div>
@@ -96,7 +96,7 @@
                     <tr>
                         <td>{{id}}</td>
                         <td>{{name}}</td>
-                        <td>{{Type}}</td>
+                        <td>{{type}}</td>
                         <td>{{email}}</td>
                         <td>
                         </td>
@@ -119,11 +119,22 @@
         </div>
     </div>
 </div>
-<table id="table_id2">
-</table>
+
 <script>
     function classify() {
-        const id = $('classifier').val();
+        var urls = "url1"; 
+        
+        const id = $('#classifier').val();
+        if (id === 'validity') {
+            urls= '/admin/client/validity'
+        }
+        else if(id === 'frecuency') {
+            urls= '/admin/client/frecuency'
+        }
+        else if(id === 'volumen') {
+            urls= '/admin/client/volumen'
+        }
+        console.log(urls,id);
         document.getElementById('table_id2').hidden = false;
         $('#table_id2').html('');
         $('#table_id2').append(`
@@ -141,14 +152,15 @@
                 </thead>
                 <tbody>`);
         $.ajax({
-            url: '/admin/client/validity',
+            url: urls,
             success: function (dev) {
+                console.log(dev);
 
 
 
                 dev.forEach(d => {
                     $('#table_id2').append(`
-                {{#each clients}}
+               
 
 
                     <tr>
@@ -160,7 +172,7 @@
                         <td>
                     </tr>
 
-                    {{/each}}`);
+                    `);
                 });
             },
             error: function (XMLHttpRequest) {
