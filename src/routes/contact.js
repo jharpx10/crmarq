@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require('passport');
 const nodemailer = require("nodemailer");
 require('dotenv').config();
-
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const AccessToken = require('twilio/lib/jwt/AccessToken');
 
