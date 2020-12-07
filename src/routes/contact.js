@@ -9,7 +9,12 @@ const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const AccessToken = require('twilio/lib/jwt/AccessToken');
 
 
-router.get('/sendemail', isLoggedIn,async (req, res) => {
+router.post('/sendemail', isLoggedIn, async (req, res) => {
+
+    const { email, subject, message } = req.body;
+
+
+
     //let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -19,15 +24,15 @@ router.get('/sendemail', isLoggedIn,async (req, res) => {
             pass: "marketsuper", // generated ethereal password
         },
     });
-   
+
+
 
      await transporter.sendMail({
-        from: "Fred Foo", // sender address
-         to: ["juana.rios@udea.edu.co", "sebastian.lopezs@udea.edu.co", "david.ballesteros@udea.edu.co",
-             'jfernando.mosquera@udea.edu.co'], // list of receivers
-        subject: "Hello", // Subject line
-     //   text: "Hello world?", // plain text body
-        html: "<b>Muchachos recuerden la reunión a la 10  el lunes</b>", // html body
+         from: "Crm supermaket", // sender address
+         to: email, // list of receivers
+         subject: subject, // Subject line
+         text: message, // plain text body
+     //   html: "<b>Muchachos recuerden la reunión a la 10  el lunes</b>", // html body
     }, (error, info) => {
             if (error) {
                 console.log(error);
@@ -52,6 +57,13 @@ router.get('/sendsms', isLoggedIn, async (req, res) => {
         from: '+17038280769',
         body: 'Muchachos recuerden la reunion a la 1'
     }).then(message => console.log(message.sid));
+});
+
+
+router.get('/:email', isLoggedIn, async (req, res) => {
+    const { email } = req.params;
+    console.log(email);
+    res.render('message/message', {email});
 });
 
 

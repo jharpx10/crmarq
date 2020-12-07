@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\database",
+    "\\src",
+    "\\src\\routes",
+    "\\src\\views",
+    "\\src\\views\\client",
+    "\\src\\views\\message",
+    "\\src\\views\\purchase"
+  ],
+  "SelectedNode": "\\src\\views\\message\\message.hbs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="text-center">
+                <div class="presentation">
+                    <h2>ADMIN{{admin.name}}</h2>
+                    </br>
+                    <h5>CLIENTES</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="/admin/contact/sendemail" method="post">
+
+        <div class="form-group">
+            <div class="form-inline">
+                <label for="email">Para: </label>
+                <input type="text" value="{{email}}" class="form-control" name="email" disabled />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <label for="email">Asunto </label>
+                <input type="text" class="form-control" name="subject" placeholder="Ingrese asunto" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <textarea type="text" class="form-control" rows="10" name="message" placeholder="Ingrese mensaje"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success btn-block">Enviar mensaje</button>
+        </div>
+
+    </form>
+
+</div>
