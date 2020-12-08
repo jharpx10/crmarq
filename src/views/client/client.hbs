@@ -3,7 +3,7 @@
         <div class="col-md-4 mx-auto">
             <div class="text-center">
                 <div class="presentation">
-                    <h2>ADMIN{{admin.name}}</h2>
+                    <h2>ADMIN {{admin.name}}</h2>
                     </br>
                     <h5>CLIENTES</h5>
                 </div>
@@ -71,7 +71,7 @@
     <div class="form-group">
         <label for="type">Clasificar Clientes</label>
         <select id="classifier" name="type" onchange="classify()">
-            <option value="">Selecci&oacute;n tipo</option>
+            <option value="s">Selecci&oacute;n tipo</option>
             <option value="validity">Clasificar por vigencia de compra</option>
             <option value="frecuency">Clasificar por frecuencia de compra</option>
             <option value="volumen">Clasificar por volumen de compra</option>
@@ -142,7 +142,7 @@
 <script>
     function classify() {
         var urls = "url1"; 
-        
+        $("option[value='s']").remove(); 
         const id = $('#classifier').val();
         if (id === 'validity') {
             urls= '/admin/client/validity'
@@ -218,6 +218,13 @@
  <th></th>
                     </tr>
                 </tfoot>`);
+
+        $('#table_id2 tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Buscar ' + title + '" />');
+        });
+    
+
     }
     document.getElementById('table_id2').hidden = true;
 
