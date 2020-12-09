@@ -48,6 +48,7 @@ app.use((req, res, next) => {
     app.locals.danger = req.flash('danger');
     app.locals.message = req.flash('message');
     app.locals.user = req.user;
+    app.locals.admin = req.user;
     next();
 });
 
