@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require('passport');
 const nodemailer = require("nodemailer");
 require('dotenv').config();
-
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const AccessToken = require('twilio/lib/jwt/AccessToken');
 
@@ -13,7 +13,7 @@ router.post('/sendemail', isLoggedIn, async (req, res) => {
 
     const { email, subject, message } = await req.body;
 
-    console.log(req.body);
+    
 
     //let testAccount = await nodemailer.createTestAccount();
     let transporter = await nodemailer.createTransport({
@@ -43,7 +43,7 @@ router.post('/sendemail', isLoggedIn, async (req, res) => {
             );
    
     
-    console.log('mensaje enviado');
+    
     res.redirect('/admin/purchase');
 
 });
@@ -62,7 +62,7 @@ router.get('/sendsms', isLoggedIn, async (req, res) => {
 
 router.get('/:email', isLoggedIn, async (req, res) => {
     const { email } = req.params;
-    console.log(email);
+   
     res.render('message/message', {email});
 });
 
