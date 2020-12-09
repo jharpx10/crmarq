@@ -4,27 +4,25 @@
         <li>
             <a class="navbar-brand" href="/">
                 <img src="/img/logo(1).jpg" width="30" height="30"
-                    class="d-inline-block align-top" alt="" loading="lazy">
+                     class="d-inline-block align-top" alt="" loading="lazy">
                 CRM
             </a>
         </li>
         {{#if user}}
         <li class="nav-item active">
-            <a class="nav-link" href="#">Active</a>
+            <a class="nav-link" href="/admin/purchase">Compras</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/contact/sendemail">Send email</a>
+            <a class="nav-link" href="/admin/client/">Clientes</a>
         </li>
+    </ul>
+    <ul class="nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/admin/contact/sendsms">Send sms</a>
-        </li>
-        <li>
             <a class="nav-link" href="/logout">Logout</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="">Disabled</a>
-        </li>
         {{else}}
+    </ul>
+    <ul class="nav ml-auto">
         <li>
             <a class="nav-link ml-auto my-sm-0" href="/signin">Signin</a>
         </li>
