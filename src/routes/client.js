@@ -73,7 +73,6 @@ router.get('/volumen', isLoggedIn, async (req, res) => {
         }
 
     }
-    console.log(clients);
     res.json(clients);
 
 });
