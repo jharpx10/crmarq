@@ -13,15 +13,15 @@ router.post('/sendemail', isLoggedIn, async (req, res) => {
 
     const { email, subject, message } = await req.body;
 
-    
-
+    console.log(process.env.EMAIL);
+    console.log(process.env.EMAIL_PASSWORD);
     //let testAccount = await nodemailer.createTestAccount();
     let transporter = await nodemailer.createTransport({
         service: "gmail",
    
         auth: {
-            user: "crmsupermarketarqsw@gmail.com", // generated ethereal user
-            pass: "marketsuper", // generated ethereal password
+            user: process.env.email, // generated ethereal user
+            pass: process.env.email_password, // generated ethereal password
         },
     });
 
@@ -42,7 +42,6 @@ router.post('/sendemail', isLoggedIn, async (req, res) => {
         }         
             );
    
-    
     
     res.redirect('/admin/purchase');
 

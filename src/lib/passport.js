@@ -16,10 +16,10 @@ passport.use('local.signin', new localStrategy({
         if (password === user.password) {
             done(null, user, req.flash('success','Welcome ' + user.username));
         }else {
-            done(null, false, req.flash('message','Incorrect Password'));
+            done(null, false, req.flash('message','Contraseña incorrecta'));
         }
     }else {
-        return done(null, false, req.flash('message','The username does not exists'));
+        return done(null, false, req.flash('message','Usuario no registrado'));
     }
 }));
 
